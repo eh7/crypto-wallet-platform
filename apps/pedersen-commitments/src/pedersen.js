@@ -54,6 +54,12 @@ function verify(H, C, r, v) {
     return ec.g.mul(r).add(H.mul(v)).eq(C);
 }
 
+function verifySub(H, C, r, v) {
+    console.log(ec.g.mul(r).add)
+//    console.log(ec.g.mul(v).toString('hex'))
+//    return ec.g.mul(r).sub(H.mul(v)).eq(C);
+}
+
 /**
  * generate a random number for my curve
  */
@@ -77,6 +83,7 @@ module.exports = {
     addPrivately,
     subPrivately,
     verify,
+    verifySub,
     generateRandom,
     generateH
 }

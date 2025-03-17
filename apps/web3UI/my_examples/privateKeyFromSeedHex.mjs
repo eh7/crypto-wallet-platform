@@ -31,5 +31,8 @@ const zeroWallet = HDwallet.derivePath("m/44'/60'/0'/0/0").getWallet();
 console.log(
   zeroWallet.getPrivateKeyString()
 );
+console.log(
+  zeroWallet.getChecksumAddressString()
+);
 /*
 */

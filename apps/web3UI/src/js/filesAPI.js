@@ -23,21 +23,10 @@ if (process.env.PROD === 'true') {
   server = http.createServer(app);
 }
 
-/*
-const https = require('https')
-const privateKey  = fs.readFileSync('sslcert/server.key', 'utf8')
-const certificate = fs.readFileSync('sslcert/server.crt', 'utf8')
-    SSLCertificateFile /home/zkws/certbot/config/live/zkws.org/cert.pem
-    SSLCertificateKeyFile /home/zkws/certbot/config/live/zkws.org/privkey.pem
-    SSLCertificateChainFile /home/zkws/certbot/config/live/zkws.org/chain.pem
-*/
-
-//const host = (!process.env.DEV) ? "localhost" : "www.zkws.org"
 const host = (process.env.PROD === 'true') ? "zkws.org" : "localhost"
-//const host = "localhost"
 const mainDirPath = (process.env.PROD === 'true') ? '/var/tmp/files/' : '/tmp/files/'
 
-console.log(process.env.PROD, (process.env.PROD === 'true'))
+console.log("PROD RUN", (process.env.PROD === 'true'))
 
 //const Wallet = require('./services/wallet')
 //const wallet = new Wallet();
