@@ -55,7 +55,12 @@ function verify(H, C, r, v) {
 }
 
 function verifySub(H, C, r, v) {
-    console.log(ec.g.mul(r).add)
+    console.log(
+      ec.g.mul(r)
+        .add(
+           H.mul(v)
+        )
+    )
 //    console.log(ec.g.mul(v).toString('hex'))
 //    return ec.g.mul(r).sub(H.mul(v)).eq(C);
 }
