@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/christsim/pedersen-commitments#readme",
   "dependencies": {
+    "@zk-email/sdk": "^0.0.137",
     "big-integer": "^1.6.52",
     "bignumber.js": "^6.0.0",
     "bip39": "^2.5.0",
@@ -29,7 +30,9 @@
     "random-prime": "^4.0.2"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "hdkey": "^0.8.0",
-    "mocha": "^5.0.0"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
   }
 }
