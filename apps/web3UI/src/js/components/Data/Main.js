@@ -133,6 +133,7 @@ function NavMain() {
                 <NavDropdownMenu title="Contracts" id="contract-nav-dropdown">
                   <Nav.Link href="/contract/ballot">Ballot</Nav.Link>
                   <Nav.Link href="/contract/ballotDev">BallotDev</Nav.Link>
+                  <Nav.Link href="/contract/oracleSample">OracleSample</Nav.Link>
                   <Nav.Link href="/contract/dai">Dai</Nav.Link>
                   <Nav.Link href="/contract/eh7token">Eh7Token</Nav.Link>
                   <Nav.Link href="/contract/etherWallet">EtherWallet</Nav.Link>

@@ -125,6 +125,7 @@ const App = () => {
 
           <Route path="/contract/ballot" element={<AllABI contractName="Ballot" />} />
           <Route path="/contract/ballotDev" element={<AllABI contractName="BallotDev" />} />
+          <Route path="/contract/oracleSample" element={<AllABI contractName="OracleSample" />} />
           <Route path="/contract/dai" element={<AllABI contractName="Dai" />} />
           <Route path="/contract/eh7token" element={<AllABI contractName="Eh7Token" />} />
           <Route path="/contract/etherWallet" element={<AllABI contractName="EtherWallet" />} />

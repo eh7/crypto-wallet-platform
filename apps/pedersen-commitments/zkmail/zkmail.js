@@ -51,7 +51,7 @@ function main() {
                     return [4 /*yield*/, sdk.getBlueprint(blueprintSlug)];
                 case 1:
                     blueprint = _b.sent();
-                    prover = blueprint.createProver();
+                    prover = blueprint.createProver({ isLocal: false });
                     filePath = (0, path_1.join)(__dirname, "emails/residency.eml");
                     return [4 /*yield*/, (0, promises_1.readFile)(filePath)];
                 case 2:
@@ -59,6 +59,8 @@ function main() {
                     return [4 /*yield*/, prover.generateProof(eml)];
                 case 3:
                     proof = _b.sent();
+                    console.log("proof: ", proof);
+                    process.exit();
                     _a = proof.getProofData(), proofData = _a.proofData, publicData = _a.publicData;
                     console.log("proof: ", proofData);
                     console.log("public: ", publicData);
