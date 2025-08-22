@@ -42,8 +42,8 @@ const dataFinal = data.map((record) => {
 */
 //const dataFinal = dataFinaliize(data)
 console.log(dataFinal)
-console.log(ma(dataFinal, 5))
-console.log(ema(dataFinal, 5))
+//console.log(ma(dataFinal, 5))
+//console.log(ema(dataFinal, 5))
 
 
 // Create a service (the app object is just a callback).
@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 })
 
 server.listen(8088, () => {
-  console.log("Server listening on port 8088");
+  //console.log("Server listening on port 8088");
   console.log("http://localhost:8088 STARTED")
 });
    
