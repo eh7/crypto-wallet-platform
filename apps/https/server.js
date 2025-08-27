@@ -24,7 +24,8 @@ var options = {
 
 //const dataFilePath = 'logs/ETH.json'
 //const dataFilePath = 'logs/ETH.rock.json'
-const dataFilePath = 'logs/ETH.dev.json'
+//const dataFilePath = 'logs/ETH.dev.json'
+const dataFilePath = 'logs/ETH.working.json'
 const data = JSON.parse(fs.readFileSync(dataFilePath))
 const range = 5
 const smaFinal = []

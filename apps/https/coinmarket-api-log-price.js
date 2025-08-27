@@ -1,6 +1,11 @@
-require('dotenv').config()
+//require('dotenv').config()
+import dotenv  from "dotenv"
+dotenv.config()
 
-const CoinMarketCap = require('coinmarketcap-api')
+//const CoinMarketCap = require('coinmarketcap-api')
+import CoinMarketCap from 'coinmarketcap-api'
+
+import JSONdb from 'simple-json-db'
  
 const client = new CoinMarketCap(process.env.APIKEY)
 
@@ -10,7 +15,6 @@ const date = Date.now();
 if (process.argv[2]) {
   const TYPE = process.argv[2]
 
-  const JSONdb = require('simple-json-db');
   const db = new JSONdb('./logs/' + TYPE + '.json');
 
   client.getQuotes({
