@@ -24,7 +24,8 @@ var options = {
 
 //const dataFilePath = 'logs/ETH.json'
 //const dataFilePath = 'logs/ETH.rock.json'
-const dataFilePath = 'logs/ETH.dev.json'
+//const dataFilePath = 'logs/ETH.dev.json'
+const dataFilePath = 'logs/ETH.working.json'
 const data = JSON.parse(fs.readFileSync(dataFilePath))
 const range = 5
 const smaFinal = []
@@ -40,8 +41,11 @@ const dataFinal = data.map((record) => {
   // WIP adding moving averages for the data set
   return dataFinal.push(record) 
 })
-*/
 //const dataFinal = dataFinaliize(data)
+console.log(dataFinal)
+*/
+//console.log(ma(dataFinal, 5))
+//console.log(ema(dataFinal, 5))
 console.log(
   'priceData.length',
   priceData.length,
@@ -99,7 +103,7 @@ app.get("/", (req, res) => {
 })
 
 server.listen(8088, () => {
-  console.log("Server listening on port 8088");
+  //console.log("Server listening on port 8088");
   console.log("http://localhost:8088 STARTED")
 });
    
