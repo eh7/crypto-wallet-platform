@@ -192,7 +192,7 @@ console.log('Buffer.from(_message).toString(\'hex\'):', _message, Buffer.from(_m
       const balanceInEth = formatEther(balance);
       return balanceInEth;
     } catch (e) {
-      console.log('eallet.js :: getBalance :: ', e);
+      console.log('wallet.js :: getBalance :: ', e);
     }
   }
 

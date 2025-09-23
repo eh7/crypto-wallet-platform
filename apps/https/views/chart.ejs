@@ -37,29 +37,47 @@
           type: 'line',
           label: 'ETH $',
           data: chartPriceData,
+          pointRadius: 1,
+          pointHoverRadius: 1,
         },
         {
           type: 'line',
           label: 'sma5',
           data: sma5,
+          pointRadius: 1,
+          pointHoverRadius: 1,
         },
         {
           type: 'line',
           label: 'ema5',
           data: ema5,
+          pointRadius: 1,
+          pointHoverRadius: 1,
         },
         {
           type: 'line',
           label: 'sma24',
           data: sma24,
+          pointRadius: 1,
+          pointHoverRadius: 1,
         },
         {
           type: 'line',
           label: 'ema24',
           data: ema24,
+          pointRadius: 1,
+          pointHoverRadius: 1,
         },
       ],
       labels,
+    },
+    options: {
+  elements: {
+    point: {
+      radius: 1,
+      hoverRadius: 1, // ex.: to make it bigger when user hovers put larger number than radius.
+    }
+  }
     }
   })
 
@@ -69,10 +87,8 @@
     type: 'line',
     data: {
       labels,
-//      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
         label: '# of Votes',
-//        data: [12, 19, 3, 5, 2, 5],
         data: chartPriceData,
         borderWidth: 1
       }]
@@ -93,6 +109,7 @@
 */
 </script>
 
+    <!--
     <% Object.keys(data).forEach(function(timestamp, i) { %>
       <% if (i < 10) { %>
         <% const date = new Date(timestamp); %><br>
@@ -103,5 +120,6 @@
     <% }) %>
     <textarea rows=10 cols=100><%= JSON.stringify(data, null, 4) %></textarea>
     <%= Object.keys(data) %>
+    //-->
 </body>
 </html>
