@@ -151,6 +151,8 @@ console.log(
       const users = [new Identity(), new Identity()]
       const group = new Group()
 
+      // console.log(users)
+
       for (const user of users) {
         await voteContract.joinGroup(user.commitment)
         group.addMember(user.commitment)
