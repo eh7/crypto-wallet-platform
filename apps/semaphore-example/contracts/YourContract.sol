@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: UNLICENSED
+
 pragma solidity ^0.8.23;
 
 import "@semaphore-protocol/contracts/interfaces/ISemaphore.sol";
@@ -15,9 +17,10 @@ contract YourContract {
 
     constructor(address semaphoreAddress, uint256 _groupId) {
         semaphore = ISemaphore(semaphoreAddress);
-        groupId = _groupId;
+        //groupId = _groupId;
 
-        semaphore.createGroup(groupId, address(this));
+        //semaphore.createGroup(groupId, address(this));
+        groupId = semaphore.createGroup(address(this));
     }
 
     function joinGroup(uint256 identityCommitment) external {

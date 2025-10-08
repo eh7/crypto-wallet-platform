@@ -17,9 +17,11 @@ contract Notes {
 
     constructor(address semaphoreAddress, uint256 _groupId) {
         semaphore = ISemaphore(semaphoreAddress);
-        groupId = _groupId;
+        //groupId = _groupId;
 
-        semaphore.createGroup(groupId, address(this));
+        //semaphore.createGroup(groupId, address(this));
+
+        groupId = semaphore.createGroup(address(this));
     }
 
     /*

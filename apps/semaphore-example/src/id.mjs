@@ -15,6 +15,7 @@ console.log(identity._secretScalar);
 const identity1 = new Identity("this is a secret string that means nothing or doesIt?" + String(1))
 //console.log(identity1);
 console.log(identity1._secretScalar);
+console.log(identity1);
 
 process.exit()
 

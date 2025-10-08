@@ -38,6 +38,8 @@ prompt.get(schema, async function(err,res){
     console.log(keystore)
     const identity = new Identity(keystore.privateKey)
     console.log(Object.keys(identity));
+    console.log(identity._secretScalar);
+    console.log(identity);
   } catch (e) {
     console.log('ERROR :: prompt.get :: ', e.shortMessage)
   }

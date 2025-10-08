@@ -8,6 +8,14 @@ import { encodeBytes32String } from "ethers"
 
 import { run } from "hardhat"
 
+import {
+ethers,
+isKeystoreJson,
+decryptKeystoreJsonSync,
+} from "ethers"
+
+import { readFileSync } from 'fs'
+
 describe("Vote Semaphore test contract", function () {
 
   let accounts: any;
@@ -271,6 +279,107 @@ console.log(
         proof2.points
       )
       ).to.be.reverted
+/*
+*/
+
+    })
+  })
+
+  describe("# castVote from keystore", () => {
+    it("Should allow users to send voteContract anonymously", async () => {
+      const fileKeystoreData = readFileSync(
+        process.env.KEYSTORE_PATH
+      )
+
+      const keystoreData = fileKeystoreData.toString()
+
+      const keystore = decryptKeystoreJsonSync(
+        keystoreData,
+        'password',
+      )
+
+      const { semaphoreContract, voteContract, groupId } = await loadFixture(deployContractFixture)
+
+      const users = [new Identity(keystore.privateKey), new Identity()]
+      const group = new Group()
+
+      //console.log(users)
+
+      for (const user of users) {
+        await voteContract.joinGroup(user.commitment)
+        group.addMember(user.commitment)
+      }
+
+      const types = ['string', 'string'];
+      const values = ["best colour", "green"];
+      const vote = ethers.keccak256(
+        ethers.solidityPacked(types, values)
+      )
+      const hashVoteContract = await voteContract.hashVote(
+        "best colour",
+        "green",
+      );
+      expect(vote).to.equal(hashVoteContract);
+
+      const scope = 0;
+      const proof = await generateProof(users[1], group, vote, scope)
+
+      //const transaction = await voteContract.connect(accounts[0]).castVote(
+      const transaction = await voteContract.castVote(
+        proof.merkleTreeDepth,
+        proof.merkleTreeRoot,
+        proof.nullifier,
+        vote,
+        scope,
+        proof.points
+      )
+
+      const eventVoted = (
+	(
+          await getEvent(
+            voteContract,
+            transaction,
+            "Voted",
+	  )
+        ).args[0]
+      )
+
+      expect(
+        vote
+      ).to.equal(
+        ethers.toBeHex(eventVoted)
+      )
+
+      expect(transaction)
+        .to.emit(semaphoreContract, "Voted")
+        .withArgs(
+          vote, 
+        )
+
+      expect(transaction)
+        .to.emit(semaphoreContract, "ProofValidated")
+        .withArgs(
+          groupId,
+          proof.merkleTreeDepth,
+          proof.merkleTreeRoot,
+          proof.nullifier,
+          proof.message,
+          groupId,
+          proof.points
+        )
+
+      //
+      // make sure it will not take another vote with same nullifier
+      // this should revert
+      //
+      await expect(voteContract.castVote(
+        proof.merkleTreeDepth,
+        proof.merkleTreeRoot,
+        proof.nullifier,
+        vote,
+        scope,
+        proof.points
+      )).to.be.reverted
 /*
 */
 

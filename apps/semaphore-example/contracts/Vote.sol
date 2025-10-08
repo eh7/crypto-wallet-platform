@@ -32,9 +32,10 @@ contract Vote {
 
     constructor(address _semaphoreAddress, uint256 _groupId) {
         semaphore = ISemaphore(_semaphoreAddress);
-        groupId = _groupId;
+        //groupId = _groupId;
         owner = msg.sender;
-        semaphore.createGroup(groupId, address(this));
+        //semaphore.createGroup(groupId, address(this));
+        groupId = semaphore.createGroup(address(this));
     }
 
     /*

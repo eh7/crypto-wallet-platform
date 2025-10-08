@@ -17,9 +17,12 @@ contract Mixer {
 
     constructor(address semaphoreAddress, uint256 _groupId) {
         semaphore = ISemaphore(semaphoreAddress);
-        groupId = _groupId;
 
-        semaphore.createGroup(groupId, address(this));
+        //groupId = _groupId;
+
+        //semaphore.createGroup(groupId, address(this));
+
+        groupId = semaphore.createGroup(address(this));
     }
 
     /*
