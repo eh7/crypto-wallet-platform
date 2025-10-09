@@ -320,6 +320,7 @@ console.log(
         "green",
       );
       expect(vote).to.equal(hashVoteContract);
+//console.log(vote, hashVoteContract)
 
       const scope = 0;
       const proof = await generateProof(users[1], group, vote, scope)
@@ -380,8 +381,56 @@ console.log(
         scope,
         proof.points
       )).to.be.reverted
-/*
-*/
+
+
+      const result = (
+          await getEvent(
+            voteContract,
+            transaction,
+            "Voted",
+	  )
+        ).args[0]
+      console.log(typeof result)
+      console.log(ethers.toBeHex(result))
+
+
+      const questionString = "Should Scotland be an independant country?";
+      const responsesStringArray = ["yes", "no"];
+      const question = ethers.toUtf8Bytes(questionString);
+      const responses = [
+        ethers.toUtf8Bytes(responsesStringArray[0]),
+        ethers.toUtf8Bytes(responsesStringArray[1]),
+      ];
+      const ballot = await voteContract.createBallot(
+        question,
+        responses,
+      );
+      const resultBallot = (
+        await getEvent(
+          voteContract,
+          ballot,
+          "Ballot",
+        )
+      )
+      console.log(ethers.toUtf8String(resultBallot.args[0]))
+      console.log(ethers.toUtf8String(resultBallot.args[1][0]))
+      console.log(ethers.toUtf8String(resultBallot.args[1][1]))
+      console.log(resultBallot.args)
+
+
+      /*
+      console.log(
+	//ethers.toBeHex(eventVoted),
+	//eventVoted,
+	(
+          await getEvent(
+            voteContract,
+            transaction,
+            "Voted",
+	  )
+        ).args[0]
+      )
+      */
 
     })
   })
