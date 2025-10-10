@@ -47,7 +47,7 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.10.3",
+    "@parcel/transformer-sass": "^2.16.0",
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
@@ -55,7 +55,7 @@
     "events": "^3.3.0",
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
-    "parcel": "^2.10.3",
+    "parcel": "2.16",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",

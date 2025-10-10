@@ -598,7 +598,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                                 )
                               )
                             })
-                            return (<td>bytes[] -> [{decoded.toString()}]</td>);
+                            return (<td>bytes[] -&gt; [{decoded.toString()}]</td>);
                         } else if (eventOutput.eventInputs[index].type == "uint256") {
                           return (<td>{item.toString()}</td>)
                         } else {

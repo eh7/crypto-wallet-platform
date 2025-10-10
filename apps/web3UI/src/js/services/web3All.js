@@ -45,7 +45,7 @@ console.log('formData :: ', formData);
       this.creationBlock = "";//contractJson.creationBlock; 
 console.log('this::', this);
     } else {
-      const contractJson = allContractsJson[contractName]);
+      const contractJson = allContractsJson[contractName];
 
       if (contractName === 'EtherWallet') {
         contractJson.network.address = (process.env.ETHER_WALLET_ADDRESS) ? process.env.ETHER_WALLET_ADDRESS : contractJson.network.address;

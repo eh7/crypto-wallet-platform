@@ -15,3 +15,4 @@ export default class Applications extends React.Component {
       </>
     );
   }
+}

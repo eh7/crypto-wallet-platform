@@ -138,7 +138,7 @@ console.log(
 */
 console.log('Buffer.from(_message):', _message, Buffer.from(_message))
 console.log('Buffer.from(_message).toString(\'hex\'):', _message, Buffer.from(_message).toString('hex'), '\n')
-    const hashedMessage = keccak256(Buffer.from(_message)))
+    const hashedMessage = keccak256(Buffer.from(_message))
     console.log('hashed _message::', hashedMessage, _message)
     const signature = await signer.signMessage(hashedMessage)
     const digest = getBytes(hashMessage(hashedMessage))
@@ -605,7 +605,7 @@ console.log('iv', iv.toString('hex'))
 
   // TODO async setup if required for FormPassword
   getNewPasswordForSeed = async () => {
-    return new Promise(function(resolve, reject) {
+    return new Promise(async function(resolve, reject) {
       try {
         const newPassword = await bip39.generateMnemonic();
         resolve(newPassword);
@@ -616,7 +616,7 @@ console.log('iv', iv.toString('hex'))
   }
 
   getNewPhraseForSeedOperation = async () => {
-    return new Promise(function(resolve, reject) {
+    return new Promise(async function(resolve, reject) {
       try {
         const newPhrase = await bip39.generateMnemonic();
         resolve(newPhrase);
