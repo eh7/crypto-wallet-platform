@@ -300,6 +300,29 @@ console.log(
 
       const { semaphoreContract, voteContract, groupId } = await loadFixture(deployContractFixture)
 
+      const questionString = "Should Scotland be an independant country?";
+      const responsesStringArray = ["yes", "no"];
+      const question = ethers.toUtf8Bytes(questionString);
+      const responses = [
+        ethers.toUtf8Bytes(responsesStringArray[0]),
+        ethers.toUtf8Bytes(responsesStringArray[1]),
+      ];
+      const ballot = await voteContract.createBallot(
+        question,
+        responses,
+      );
+      const resultBallot = (
+        await getEvent(
+          voteContract,
+          ballot,
+          "Ballot",
+        )
+      )
+      console.log(ethers.toUtf8String(resultBallot.args[0]))
+      console.log(ethers.toUtf8String(resultBallot.args[1][0]))
+      console.log(ethers.toUtf8String(resultBallot.args[1][1]))
+      console.log(resultBallot.args)
+
       const users = [new Identity(keystore.privateKey), new Identity()]
       const group = new Group()
 
@@ -310,6 +333,7 @@ console.log(
         group.addMember(user.commitment)
       }
 
+      /*
       const types = ['string', 'string'];
       const values = ["best colour", "green"];
       const vote = ethers.keccak256(
@@ -318,6 +342,18 @@ console.log(
       const hashVoteContract = await voteContract.hashVote(
         "best colour",
         "green",
+      );
+      expect(vote).to.equal(hashVoteContract);
+//console.log(vote, hashVoteContract)
+      */
+      const types = ['string', 'string'];
+      const values = [questionString, responsesStringArray[0]];
+      const vote = ethers.keccak256(
+        ethers.solidityPacked(types, values)
+      )
+      const hashVoteContract = await voteContract.hashVote(
+        questionString,
+        responsesStringArray[0],
       );
       expect(vote).to.equal(hashVoteContract);
 //console.log(vote, hashVoteContract)
@@ -394,28 +430,22 @@ console.log(
       console.log(ethers.toBeHex(result))
 
 
-      const questionString = "Should Scotland be an independant country?";
-      const responsesStringArray = ["yes", "no"];
-      const question = ethers.toUtf8Bytes(questionString);
-      const responses = [
-        ethers.toUtf8Bytes(responsesStringArray[0]),
-        ethers.toUtf8Bytes(responsesStringArray[1]),
-      ];
-      const ballot = await voteContract.createBallot(
-        question,
-        responses,
-      );
-      const resultBallot = (
-        await getEvent(
-          voteContract,
-          ballot,
-          "Ballot",
+      const vote0 = ethers.keccak256(
+        ethers.solidityPacked(
+          ['string', 'string'],
+          [questionString, responsesStringArray[0]],
         )
       )
-      console.log(ethers.toUtf8String(resultBallot.args[0]))
-      console.log(ethers.toUtf8String(resultBallot.args[1][0]))
-      console.log(ethers.toUtf8String(resultBallot.args[1][1]))
-      console.log(resultBallot.args)
+      console.log(vote0)
+
+      const vote1 = ethers.keccak256(
+        ethers.solidityPacked(
+          ['string', 'string'],
+          [questionString, responsesStringArray[1]],
+        )
+      )
+      console.log(vote1)
+
 
 
       /*
