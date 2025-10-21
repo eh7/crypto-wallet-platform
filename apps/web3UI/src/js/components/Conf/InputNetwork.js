@@ -39,6 +39,7 @@ const InputNetwork = ({ networks, setNetworks, type }) => {
   return(
     <div>
 
+
       <div className="network-list-container">
         <Table responsive striped bordered hover size="sm">
           <thead>
@@ -54,7 +55,7 @@ const InputNetwork = ({ networks, setNetworks, type }) => {
           <tbody>
 
             {networks.length > 0 && networks.map((network)=> (
-              <tr>
+              <tr key={network.chainId}>
                 <td><Button onClick={(evt) => {handleDelete(network)}}>X</Button></td>
                 <td>{(network.name) ? network.name : network}</td>
                 <td>{(network.chainId) ? network.chainId : 'no value'}</td>
@@ -68,6 +69,7 @@ const InputNetwork = ({ networks, setNetworks, type }) => {
           </tbody>
         </Table>
       </div>
+
 
       <form onSubmit={(evt) => {handleSubmit(evt)}}>
         <Form.Group className="mb-3 pr-3" controlId="formNetworkName">
