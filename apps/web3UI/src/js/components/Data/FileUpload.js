@@ -16,6 +16,7 @@ const apiHost = (process.env.PROD === 'true') ? "zkws.org" : "localhost"
 class FileUpload extends React.Component {
 
   constructor(props) {
+    //console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', props)
     super(props);
     this.state = {
       keys: [],
@@ -520,6 +521,7 @@ console.log('dataInDb', ob)
       this.setState({ phrase: await this.wallet.getPhraseData() });
       this.setState({ address: await this.wallet.getAddress() })
       this.setupDBState();
+      document.querySelector("#image").src = "/images/blank.gif";
     } catch (e) {
       console.error('ERROR :: FileUpload :: componentDidMount :: ', e)
     }
@@ -584,7 +586,7 @@ console.log('dataInDb', ob)
                   <tbody>
                     {this.state.keys.map((name, index) => {
                       return (
-                        <tr>
+                        <tr key={index}>
                           <td>
                             <button onClick={() => this.showImageFile(name, index)}>show {name}</button>
                           </td>
@@ -604,15 +606,18 @@ console.log('dataInDb', ob)
                 </Table>
               </Container>
 
-              <Card bg="Success" border="warning" style={{ width: '18rem' }}>
-                <Card.Title>File Output</Card.Title>
-                <Card.Body>
-                   <Card.Text>
-                     <p><img id="image"/></p>
-                     {this.state?.utf8FileText}
-                   </Card.Text>
-                </Card.Body>
-              </Card>
+              {alert((document.querySelector("#image")) ? (document.querySelector("#image").src.search(/^data:/)) : 'null')/* (this.state.utf8FileText) && 
+                <p>111111: {this.state.utf8FileText}</p>
+              */}
+                <Card bg="Success" border="warning" style={{ width: '18rem' }}>
+                  <Card.Title>File Output</Card.Title>
+                  <Card.Body>
+                     <Card.Text>
+                       <p><img id="image"/></p>
+                       {this.state?.utf8FileText}
+                     </Card.Text>
+                  </Card.Body>
+                </Card>
 
             </Card.Body>
           </Card>

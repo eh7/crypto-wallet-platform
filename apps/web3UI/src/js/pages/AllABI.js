@@ -385,7 +385,6 @@ console.log('ggggggggggggggggggggggggggggggg', formData.values);
   	      <Col>
 	       LOGS {console.log('eventTypes', eventTypes)}
                {(!!eventTypes.length) && (
-                 <p className="p-4">
                    <nav>
                      <h4>Contract Events</h4>
                      {
@@ -419,7 +418,6 @@ console.log('ggggggggggggggggggggggggggggggg', formData.values);
                        })
                      }
                    </nav>
-                 </p>
                )}
                {(showLogs) && (
   	         <div className="p-4">
@@ -526,8 +524,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
   	<Row>
   	  <Col>
               {(!eventTypes.length) || (
-                <p className="p-4">
-                  <nav>
+                <nav>
                   <h4>Contract Events</h4>
                   {
                     eventTypes.map((event,index) => {
@@ -559,8 +556,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                       );
                     })
                   }
-                  </nav>
-                </p>
+                </nav>
               )}
               {(showLogs) && (
   	      <div className="p-4">

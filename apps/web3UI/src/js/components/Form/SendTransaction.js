@@ -130,6 +130,7 @@ function FormSendTransaction({_subtitle, _new}) {
       <Card>
         <Card.Body>
           <Card.Title>Send Transaction Form</Card.Title>
+{/*
           { (txReceiptShow) ? (
             <Alert key="warning" variant="warning">
               <p className="h4 primary">Transaction Receipt</p>
@@ -160,11 +161,15 @@ function FormSendTransaction({_subtitle, _new}) {
               </Alert>
             </Card.Title>
           }
+*/}
           <Card.Text>
             <div>
             <Form onSubmit={handleSubmit}>
 
+{/*
               <Container ref={el=>this.componentRef=el}>
+*/}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   Send Transaction
@@ -215,6 +220,7 @@ function FormSendTransaction({_subtitle, _new}) {
                 </Row>
 
               </Container>
+
             </Form>
             </div>
           </Card.Text>

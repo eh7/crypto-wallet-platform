@@ -29,7 +29,7 @@ function Data(props) {
 
   const startUp = async () => {
     setData([1,2,3])
-    this.key = wallet.getPrivateKey();
+    //this.key = wallet.getPrivateKey();
   }
 
   useEffect(() => {
