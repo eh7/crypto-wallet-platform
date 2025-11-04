@@ -9,6 +9,7 @@ const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const PRIVATE_KEY_DEV_EVM = process.env.PRIVATE_KEY_DEV_EVM;
 const PRIVATE_KEY_DEV_EVM_HH = process.env.PRIVATE_KEY_DEV_EVM_HH;
+const PRIVATE_KEY_META = process.env.PRIVATE_KEY_META;
 
 const config: HardhatUserConfig = {
   solidity: {
@@ -33,7 +34,8 @@ const config: HardhatUserConfig = {
     },
     sepolia:{
       url: 'https://sepolia.infura.io/v3/' + INFURA_API_KEY,
-      accounts: [`0x${PRIVATE_KEY}`]
+      accounts: [`0x${PRIVATE_KEY_META}`]
+      //accounts: [`0x${PRIVATE_KEY}`]
     },
     op_sepolia:{
       url: 'https://optimism-sepolia.infura.io/v3/' + INFURA_API_KEY,

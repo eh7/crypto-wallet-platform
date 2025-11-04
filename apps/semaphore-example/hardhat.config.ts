@@ -12,6 +12,7 @@ require('dotenv').config({ path: __dirname+'/.env' });
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const PRIVATE_KEY_META = process.env.PRIVATE_KEY_META;
 const PRIVATE_KEY_DEV_EVM = process.env.PRIVATE_KEY_DEV_EVM;
 const PRIVATE_KEY_DEV_EVM_HH = process.env.PRIVATE_KEY_DEV_EVM_HH;
 const PRIVATE_KEY_DEV_EVM_ROCK_KEYLIB = process.env.PRIVATE_KEY_DEV_EVM_ROCK_KEYLIB;
@@ -34,8 +35,10 @@ const config: HardhatUserConfig = {
       accounts: [`0x${PRIVATE_KEY}`]
     },
     sepolia:{
+      chainID: 3,
       url: 'https://sepolia.infura.io/v3/' + INFURA_API_KEY,
       accounts: [`0x${PRIVATE_KEY}`]
+      //accounts: [`0x${PRIVATE_KEY_META}`]
     },
     op_sepolia:{
       url: 'https://optimism-sepolia.infura.io/v3/' + INFURA_API_KEY,

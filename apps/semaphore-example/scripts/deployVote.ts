@@ -2,21 +2,22 @@ import { ethers } from "hardhat";
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers"
 
 async function deployContractFixture() {
-  const { semaphore } = await run("deploy:semaphore", {
-    logs: false
-  })
+  try {
+    const { semaphore } = await run("deploy:semaphore", {
+      logs: false
+    })
 
-  const semaphoreContract: ISemaphore = semaphore
+    const semaphoreContract: ISemaphore = semaphore
 
-  const baseContract = "Vote";
+    const baseContract = "Vote";
 
-  const voteContract: Feedback = await run("deploy", {
-    logs: false,
-    semaphore: await semaphoreContract.getAddress(),
-    baseContract,
-  })
+    const voteContract: Feedback = await run("deploy", {
+      logs: false,
+      semaphore: await semaphoreContract.getAddress(),
+      baseContract,
+    })
 
-  const groupId = await voteContract.groupId()
+    const groupId = await voteContract.groupId()
 
   /*
   console.log(
@@ -32,7 +33,8 @@ async function deployContractFixture() {
   );
   */
 
-  return { semaphoreContract, voteContract, groupId }
+    return { semaphoreContract, voteContract, groupId }
+  } catch (e) { console.log("ERROR :: ", e.message) }
 }
 
 async function main() {
