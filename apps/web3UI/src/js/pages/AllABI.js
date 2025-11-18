@@ -566,8 +566,8 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                     <thead>
                       <tr>
                         <th>Block No.</th>
-                        { eventOutput.eventInputs.map((input) => { 
-                            return (<th>{ capitalize(input.name) }</th>);
+                        { eventOutput.eventInputs.map((input, index) => { 
+                            return (<th key={index}>{ capitalize(input.name) }</th>);
                           })
                         }
                       </tr>

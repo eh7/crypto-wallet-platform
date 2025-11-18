@@ -64,11 +64,11 @@ function SetMyNetwork(props) {
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form>
 
-              <Container ref={el=>this.componentRef=el}>
+              <Container>
+	      {/* <Container ref={el=>this.componentRef=el}> */}
 
                 <Row className="mb-0 pl-3 pt-3">
                   <div className="pt-3 text-primary h3">
@@ -94,7 +94,7 @@ function SetMyNetwork(props) {
                     >
                       <option value="">Select Network</option>
                       {networks.map((_network, _index) => {
-                        return (<option value={_index}>{_network.name}</option>)
+                        return (<option key={_index} value={_index}>{_network.name}</option>)
                       })}
                     </Form.Control>
                   </Form.Group>
@@ -102,8 +102,7 @@ function SetMyNetwork(props) {
 
               </Container>
             </Form>
-            </div>
-          </Card.Text>
+          </div>
         </Card.Body>
       </Card>
     </>

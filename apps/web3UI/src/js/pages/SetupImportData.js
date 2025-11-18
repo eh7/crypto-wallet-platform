@@ -42,9 +42,9 @@ export default class SetupImportData extends React.Component {
     return (
       <>
         <h1>SetupImportData</h1>
-        <p>
+        <>
           {(this.state.keystore !== null) ? <ImportAppData keystore={this.state.keystore} networks={this.state.networks}/> : (<span>Loading</span>)}
-        </p>
+        </>
       </>
     );
   }

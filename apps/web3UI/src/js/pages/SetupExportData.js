@@ -42,9 +42,9 @@ export default class SetupExportData extends React.Component {
     return (
       <>
         <h1>SetupExportData</h1>
-        <p>
+        <div>
           {(this.state.keystore !== null) ? <ExportAppData keystore={this.state.keystore} networks={this.state.networks}/> : (<span>Loading</span>)}
-        </p>
+        </div>
       </>
     );
   }

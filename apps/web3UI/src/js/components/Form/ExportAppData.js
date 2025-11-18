@@ -64,6 +64,8 @@ function ExportAppData(props) {
 
     try {
       //const this_key = await wallet.getKeystoreWithPassword(password);
+      //alert(props.keystore);
+      alert(await wallet.getKeystoreWithPasswordKeystore(password, props.keystore));
       const this_key = (await wallet.getKeystoreWithPasswordKeystore(password, props.keystore)).substr(64);
       //console.log(this_key);
       //const newPhrase  = await this.getNewPhraseForSeedOperation();
@@ -101,7 +103,7 @@ function ExportAppData(props) {
     document.getElementById("submitButton").disabled = false;
   };
 
-  encrypt = (text, key) => {
+  const encrypt = (text, key) => {
     //const this_key = Buffer.from(process.env.KEY, 'hex');
     console.log(key.length, key);
     const this_key = Buffer.from(key, 'hex');
@@ -120,7 +122,7 @@ function ExportAppData(props) {
     };
   }
 
-  decrypt = (text, key) => {
+  const decrypt = (text, key) => {
     const this_key = Buffer.from(key, 'hex');
     let iv = Buffer.from(text.iv, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
@@ -135,7 +137,7 @@ function ExportAppData(props) {
     return decrypted.toString('utf8');
   }
 
-  setQrcode = async () => {
+  const setQrcode = async () => {
     //console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', exportData);
     if (Object.keys(exportData).length > 0) {
       try {
@@ -194,11 +196,11 @@ function ExportAppData(props) {
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+	      {/* <Container ref={el=>this.componentRef=el}> */}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   Export App Data                     
@@ -226,7 +228,7 @@ function ExportAppData(props) {
                 </Row>
 
                 <Row className="mb-0 pl-3 pt-3">
-                  <textarea class="form-control" id="formTextarea" rows="3"></textarea>
+                  <textarea className="form-control" id="formTextarea" rows="3"></textarea>
                   <canvas id="qrCodeCanvas"></canvas>
                   <canvas id="qrCodeCanvas1"></canvas>
                     {JSON.stringify(exportData)}
@@ -234,7 +236,9 @@ function ExportAppData(props) {
 
               </Container>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
+	    card text footer
           </Card.Text>
         </Card.Body>
       </Card>

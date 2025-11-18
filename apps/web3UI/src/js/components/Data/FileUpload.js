@@ -606,16 +606,14 @@ console.log('dataInDb', ob)
                 </Table>
               </Container>
 
-              {alert((document.querySelector("#image")) ? (document.querySelector("#image").src.search(/^data:/)) : 'null')/* (this.state.utf8FileText) && 
+              {(document.querySelector("#image") ? (document.querySelector("#image").src.search(/^data:/)) : 'null')/* (this.state.utf8FileText) && 
                 <p>111111: {this.state.utf8FileText}</p>
               */}
                 <Card bg="Success" border="warning" style={{ width: '18rem' }}>
                   <Card.Title>File Output</Card.Title>
                   <Card.Body>
-                     <Card.Text>
-                       <p><img id="image"/></p>
-                       {this.state?.utf8FileText}
-                     </Card.Text>
+	            <img id="image"/>
+                    {this.state?.utf8FileText}
                   </Card.Body>
                 </Card>
 

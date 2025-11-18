@@ -10,11 +10,16 @@ import Row from 'react-bootstrap/Row';
  
 import Wallet from '../../services/wallet';
 
-function FormSendTransaction({_subtitle, _new}) {
+//function FormSendTransaction({_subtitle, _new}) {
+function FormSendTransaction() {
 
 //  const [validated, setValidated] = useState(false);
 
   const wallet = new Wallet();
+
+  const local_store_networks = JSON.parse(
+    localStorage.getItem('networks')
+  )
 
   const [networks, setNetworks] = useState(
     JSON.parse(
@@ -130,100 +135,57 @@ function FormSendTransaction({_subtitle, _new}) {
       <Card>
         <Card.Body>
           <Card.Title>Send Transaction Form</Card.Title>
-{/*
-          { (txReceiptShow) ? (
-            <Alert key="warning" variant="warning">
-              <p className="h4 primary">Transaction Receipt</p>
-              <p>hash: {txReceipt.transactionHash}</p>
-              <p>blockNumber: {txReceipt.blockNumber}</p>
-              <p>confirmations: {txReceipt.confirmations}</p>
-              <p>gas: {txReceipt.gasUsed.toNumber()}</p>
-              <p>
-                {(network.explorer) ? (<p>
-                  <Button variant="link" onClick={() => {
-                      const url = network.explorer + "/tx/" + txReceipt.transactionHash;
-                      openInNewTab(url);
-                    }}
-                  >block explorer</Button>
-                </p>) : (<p>no network.explorer</p>)}
-              </p>
-              <Button variant="link" onClick={() => setTxReceiptShow(false)}>Hide Tx Info</Button>  
-            </Alert>
-            ) : (
-              <>{(txReceipt.transactionHash) ? (<Button variant="link" onClick={() => setTxReceiptShow(true)}>Show TX Info</Button>) : (<></>)}</>
-            )
-          }
-          { (validationErrors.length > 0) &&
-            <Card.Title className="mb-2 p-3 text-warning"> 
-              Validation Error:
-              <Alert key="warning" variant="warning">
-                {validationErrors.map((error) => <div>{error}</div>)}
-              </Alert>
-            </Card.Title>
-          }
-*/}
-          <Card.Text>
-            <div>
-            <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
+            <Container>
+              <div className="pt-3 text-primary h3">
+                Send Transaction
+              </div>
+              <div className="pt-3 text-secondary h6">
+                {(network.name) ? (<>
+                  network: {network.name}<br/>
+                  address: {address}<br/>
+                  balance: {balance}<br/>
+                </>) : (<>No Network Selected<br/></>)} 
+              </div>
 
-{/*
-              <Container ref={el=>this.componentRef=el}>
-*/}
-              <Container>
-
+              <Row className="mb-0 pl-3 pt-3">
                 <div className="pt-3 text-primary h3">
-                  Send Transaction
+                  To 
                 </div>
+              </Row>
+              <Row className="mb-0 pl-3 pt-3">
+                <Form.Group className="mb-3 pr-3" controlId="formTo">
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="To"
+                  />
+                </Form.Group>
+              </Row>
 
-                <div className="pt-3 text-secondary h6">
-                  {(network.name) ? (<p>
-                    <p>network: {network.name}</p>
-                    <p>address: {address}</p>
-                    <p>balance: {balance}</p>
-                  </p>) : (<p>No Network Selected</p>)} 
+              <Row className="mb-0 pl-3 pt-3">
+                <div className="pt-3 text-primary h3">
+                  Amount
                 </div>
+              </Row>
+              <Row className="mb-0 pl-3 pt-3">
+                <Form.Group className="mb-3 pr-3" controlId="formAmount">
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Amount"
+                  />
+                </Form.Group>
+              </Row>
 
-                <Row className="mb-0 pl-3 pt-3">
-                  <div className="pt-3 text-primary h3">
-                    To 
-                  </div>
-                </Row>
-                <Row className="mb-0 pl-3 pt-3">
-                  <Form.Group className="mb-3 pr-3" controlId="formTo">
-                    <Form.Control
-                      required
-                      type="text"
-                      placeholder="To"
-                    />
-                  </Form.Group>
-                </Row>
+              <Row className="mb-0 pl-3 pt-3">
+                <Button variant="primary" type="submit" id="submitButton">
+                  Submit
+                </Button>
+              </Row>
 
-                <Row className="mb-0 pl-3 pt-3">
-                  <div className="pt-3 text-primary h3">
-                    Amount
-                  </div>
-                </Row>
-                <Row className="mb-0 pl-3 pt-3">
-                  <Form.Group className="mb-3 pr-3" controlId="formAmount">
-                    <Form.Control
-                      required
-                      type="text"
-                      placeholder="Amount"
-                    />
-                  </Form.Group>
-                </Row>
-
-                <Row className="mb-0 pl-3 pt-3">
-                  <Button variant="primary" type="submit" id="submitButton">
-                    Submit
-                  </Button>
-                </Row>
-
-              </Container>
-
-            </Form>
-            </div>
-          </Card.Text>
+            </Container>
+          </Form>
         </Card.Body>
       </Card>
     </>

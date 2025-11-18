@@ -121,13 +121,13 @@ export default class Setup extends React.Component {
         <Button href="/setup/import/keystore">Import Keystore</Button> |
         <Button href="/setup/export/keystore">Export Keystore</Button> |
 
-        <p>
+        <br/>
+        <br/>
         keyset: {
           localStorage.getItem("keyset") ?
           <h3>user already setup {localStorage.getItem("keyset")}</h3> :
           <h3>setup user</h3>
         }
-        </p>
 
         <p>You clicked {this.state.count} times</p>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>

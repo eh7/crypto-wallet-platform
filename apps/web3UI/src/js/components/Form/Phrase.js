@@ -141,11 +141,11 @@ console.log(password.value, " -- ", passwordCheck.value);
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+	  {/*<Container ref={el=>this.componentRef=el}>*/}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   Secret Phrase                    
@@ -225,7 +225,8 @@ console.log(password.value, " -- ", passwordCheck.value);
 
               </Container>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

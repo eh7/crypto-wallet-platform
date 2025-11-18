@@ -73,11 +73,11 @@ function SeedHex(props) {
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+	      {/*<Container ref={el=>this.componentRef=el}>*/}
+              <Container>
 
                 <Row className="mb-0 pl-3 pt-3">
                   <textarea class="form-control" id="formSeedHex" rows="9"></textarea>
@@ -96,7 +96,8 @@ function SeedHex(props) {
 
               </Container>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

@@ -96,11 +96,11 @@ function FormPassword({_subtitle, _new}) {
           <Card.Subtitle className="mb-2 text-muted">
             {_new ? "Setup New Password" : "Import Your Password"}
           </Card.Subtitle>
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+              {/*<Container ref={el=>this.componentRef=el}>*/}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   Secret Password                    
@@ -145,7 +145,8 @@ function FormPassword({_subtitle, _new}) {
                 Submit
               </Button>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

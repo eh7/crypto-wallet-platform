@@ -103,11 +103,11 @@ function SSS(props) {
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+	      {/*<Container ref={el=>this.componentRef=el}>*/}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   JSON Object                     
@@ -167,7 +167,8 @@ function SSS(props) {
 
               </Container>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

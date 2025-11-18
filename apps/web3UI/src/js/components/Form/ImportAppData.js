@@ -134,7 +134,7 @@ console.log('keystoreArray', keystoreArray);
     document.getElementById("submitButton").disabled = false;
   };
 
-  encrypt = (text, key) => {
+  const encrypt = (text, key) => {
     //const this_key = Buffer.from(process.env.KEY, 'hex');
     console.log(key.length, key);
     const this_key = Buffer.from(key, 'hex');
@@ -153,7 +153,7 @@ console.log('keystoreArray', keystoreArray);
     };
   }
 
-  decrypt = (text, key) => {
+  const decrypt = (text, key) => {
     const this_key = Buffer.from(key, 'hex');
     let iv = Buffer.from(text.iv, 'hex');
     let encryptedText = Buffer.from(text.encryptedData, 'hex');
@@ -198,18 +198,18 @@ console.log('decrypted JSON.parse::', decrpted_object);
               </Alert>
             </Card.Title>
           }
-          <Card.Text>
-            <div>
+          <div>
             <Form onSubmit={handleSubmit}>
 
-              <Container ref={el=>this.componentRef=el}>
+	      {/*<Container ref={el=>this.componentRef=el}>*/}
+              <Container>
 
                 <div className="pt-3 text-primary h3">
                   Import App Data                     
                 </div>
 
                 <Row className="mb-0 pl-3 pt-3">
-                  <textarea class="form-control" id="formImportData" rows="3"></textarea>
+                  <textarea className="form-control" id="formImportData" rows="3"></textarea>
                 </Row>
 
 
@@ -236,7 +236,8 @@ console.log('decrypted JSON.parse::', decrpted_object);
 
               </Container>
             </Form>
-            </div>
+          </div>
+          <Card.Text>
           </Card.Text>
         </Card.Body>
       </Card>

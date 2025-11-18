@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import FromSendTransaction from '../components/Form/SendTransaction';
+import FormSendTransaction from '../components/Form/SendTransaction';
 
 import Wallet from '../services/wallet';
 
@@ -48,7 +48,7 @@ export default class Home extends React.Component {
         <Container>
           <Row><h1>Send Tx</h1></Row>
           <Row>
-            <FromSendTransaction /> 
+            <FormSendTransaction /> 
           </Row>
         </Container>
       </>
