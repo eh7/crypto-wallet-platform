@@ -10,6 +10,7 @@ const contracts = [
   'MultiPaymentChannelsDev',
   'Notes',
   'Vote',
+  'VoteSepolia',
 ];
 
 const contractsJson = {
@@ -22,6 +23,7 @@ const contractsJson = {
   "Groth16VerifierSquare": "../contracts/Groth16VerifierSquare",
   "MultiPaymentChannelsDev": "../contracts/MultiPaymentChannels",
   "Vote": "../contracts/Vote",
+  "VoteSeppolia": "../contracts/VoteSepolia",
   "Notes": "../contracts/Notes",
 }
 

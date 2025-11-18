@@ -4,6 +4,11 @@ import 'dotenv/config'
 
 import { createRequire } from "module"
 
+if (!process.argv[3]) {
+  console.log('USAGE: node ', process.argv[1], 'txAddressto(hex string) txValue(string)');
+  process.exit(0);
+}
+
 const require = createRequire(import.meta.url)
 
 const endPoint = process.env.RPC_URL_SEPOLIA
@@ -52,11 +57,15 @@ const getBalance = async (address) => {
 }
 
 const run = async () => {
+  const txAddressTo = process.argv[2];
+  const txValue = process.argv[3];
   const address = await getAddress()
   getBalance(address)
   sendTx(
-    "0x6b1527f6e2248a862061963b8c1bd013acaca5a6",
-    "0.001",
+    txAddressTo,
+    txValue,
+    //"0x6b1527f6e2248a862061963b8c1bd013acaca5a6",
+    //"0.001",
   )
 
 }

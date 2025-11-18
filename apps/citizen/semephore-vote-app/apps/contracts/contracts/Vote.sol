@@ -29,7 +29,8 @@ contract Vote {
       _;
     }
 
-    constructor(address _semaphoreAddress, uint256 _groupId) {
+    //constructor(address _semaphoreAddress, uint256 _groupId) {
+    constructor(address _semaphoreAddress) {
         semaphore = ISemaphore(_semaphoreAddress);
         //groupId = _groupId;
         owner = msg.sender;

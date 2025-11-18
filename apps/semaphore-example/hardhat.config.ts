@@ -27,8 +27,8 @@ const config: HardhatUserConfig = {
   //  hardhat:{},
     devEvmNode:{
       url: 'http://127.0.0.1:8545/',
-      //accounts: [`0x${PRIVATE_KEY_DEV_EVM_HH}`],
-      accounts: [`0x${PRIVATE_KEY_DEV_EVM_ROCK_KEYLIB}`]
+      accounts: [`0x${PRIVATE_KEY_DEV_EVM_HH}`],
+      //accounts: [`0x${PRIVATE_KEY_DEV_EVM_ROCK_KEYLIB}`]
     },
     goerli:{
       url: 'https://goerli.infura.io/v3/' + INFURA_API_KEY,
