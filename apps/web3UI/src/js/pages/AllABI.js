@@ -584,7 +584,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                           const formatted_item = web3All.toUtf8String(
                             item
                           )
-                          return (<td>{formatted_item}</td>)
+                          return (<td key={index}>{formatted_item}</td>)
                         } else if (eventOutput.eventInputs[index].type === "bytes[]") {
                             const decoded = [];
                             item.map((element) => {
@@ -594,16 +594,16 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                                 )
                               )
                             })
-                            return (<td>bytes[] -&gt; [{decoded.toString()}]</td>);
+                            return (<td key={index}>bytes[] -&gt; [{decoded.toString()}]</td>);
                         } else if (eventOutput.eventInputs[index].type == "uint256") {
-                          return (<td>{item.toString()}</td>)
+                          return (<td key={index}>{item.toString()}</td>)
                         } else {
                           {console.log('wwwttt', item)}
-                          return (<td>{item}</td>)
+                          return (<td key={index}>{item}</td>)
                         }
                       })
-                      return (<tr>
-                        {blockTd} {tds}
+                      return (<tr key={eventIndex}>
+                        {blockTd}{tds}
                       </tr>)
                     })}
                     </tbody>
