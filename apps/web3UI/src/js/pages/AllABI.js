@@ -644,7 +644,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
   		{ formData.inputs.map((input, index) => {
   	          // return (<p><input value={input.name} /></p>);
   	          return (
-  	            <Form.Group className="mb-3" controlId="formBasicEmail">
+  	            <Form.Group className="mb-3" controlId="formBasicEmail" key={index}>
   	              <Form.Label>
                         {capitalize(input.name)} ({input.type})
                       </Form.Label>
