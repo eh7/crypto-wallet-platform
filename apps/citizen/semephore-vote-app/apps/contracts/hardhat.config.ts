@@ -9,11 +9,14 @@ import { HardhatUserConfig } from "hardhat/config"
 import { resolve } from "path"
 //import "./tasks/deploy"
 //import "./tasks/deployLock"
-import "./tasks/deployVote"
+//import "./tasks/deployVote"
+import "./tasks/deployPoll"
 //import "./tasks/deployFeedback"
 //import "./tasks/deployCounterTest"
 
 dotenvConfig({ path: resolve(__dirname, "../../.env") })
+
+
 
 const config: HardhatUserConfig = {
     solidity: "0.8.23",

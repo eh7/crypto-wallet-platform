@@ -144,6 +144,7 @@ function NavMain() {
                   <Nav.Link href="/contract/notes">Notes</Nav.Link>
                   <Nav.Link href="/contract/vote">Vote</Nav.Link>
                   <Nav.Link href="/contract/voteSepolia">VoteSepolia</Nav.Link>
+                  <Nav.Link href="/contract/pollSepolia">PollSepolia</Nav.Link>
                 </NavDropdownMenu>
               </Nav.Item>
 

@@ -5,6 +5,7 @@
         "dev": "hardhat node & yarn deploy --network localhost",
         "compile": "hardhat compile",
         "deploy": "yarn compile && hardhat deploy",
+        "deploySepolia": "yarn compile && NETWORK=sepolia yarn deploy --network sepolia",
         "verify": "hardhat verify",
         "test": "hardhat test",
         "test:report-gas": "REPORT_GAS=true hardhat test",

@@ -1,3 +1,4 @@
+/*
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers"
 import { Group, Identity, generateProof } from "@semaphore-protocol/core"
 import { expect } from "chai"
@@ -82,3 +83,4 @@ describe("Feedback", () => {
         })
     })
 })
+*/

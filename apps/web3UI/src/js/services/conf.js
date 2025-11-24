@@ -11,6 +11,7 @@ const contracts = [
   'Notes',
   'Vote',
   'VoteSepolia',
+  'PollSepolia',
 ];
 
 const contractsJson = {
@@ -24,6 +25,7 @@ const contractsJson = {
   "MultiPaymentChannelsDev": "../contracts/MultiPaymentChannels",
   "Vote": "../contracts/Vote",
   "VoteSeppolia": "../contracts/VoteSepolia",
+  "PollSeppolia": "../contracts/PollSepolia",
   "Notes": "../contracts/Notes",
 }
 
