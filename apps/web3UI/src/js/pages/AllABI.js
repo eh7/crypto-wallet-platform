@@ -221,7 +221,9 @@ console.log('ggggggggggggggggggggggggggggggg', formData.values);
       const returnData = await web3All.executeContractFunction (formData.name, formData.values, inputs, stateMutability);
       console.log('executeContractFunction :: ', returnData);
       if (typeof returnData.transactionHash === 'undefined') {
-        alert('executeContractFunction :: ' + returnData);
+	const bigIntData = BigInt(returnData)
+        alert('executeContractFunction :: \n' + returnData + '\n' + bigIntData.toString());
+        //alert('executeContractFunction :: ' + bigIntData.toString());
       } else {
         alert('executeContractFunction :: ' + returnData.transactionHash);
       }

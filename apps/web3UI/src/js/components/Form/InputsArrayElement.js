@@ -59,16 +59,19 @@ function InputsArrayElement(props) {
       </div>
       {inputs.map((input, index) => {
         return (
-          <div key={input.id}>
+          <div key={index}>
+            {/*<h4>{input.id} {index}</h4>*/}
             <Form.Control
               required
-              key={inputs[index].id}
+              key={index}
               value={inputs[index].value}
               onChange={(e) => handleInputOnChange(e, index)}
               placeholder={"Enter value " + index}
             />
           </div>
         );
+	      {/*key={inputs[index].id}*/}
+	      {/*placeholder={"Enter value " + index + "(" + index + ")"}*/}
       })}
       {
         (inputs.length > 1) &&

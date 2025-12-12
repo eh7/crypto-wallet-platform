@@ -6,6 +6,7 @@
   "scripts": {
     "startParcel": "npm run contractJsonBuild && parcel serve src/index.html --public-url / --dist-dir dist",
     "start": "npm run contractJsonBuild && parcel serve src/index.dev.html --public-url / --dist-dir dist",
+    "startPoll": "npm run contractJsonBuild && parcel serve src/index.poll.html --public-url / --dist-dir dist",
     "startDataApp": "parcel serve src/index.app.data.html --public-url / --dist-dir dist",
     "startFileAPI": "PROD=false node src/js/filesAPI.js",
     "startFileAPIProduction": "PROD=true node src/js/filesAPI.js",
@@ -17,6 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "baseline-browser-mapping": "^2.9.5",
     "bip39-light": "^1.0.7",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.2",
@@ -51,7 +53,7 @@
     "assert": "^2.1.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
+    "crypto-browserify": "^3.12.1",
     "events": "^3.3.0",
     "https-browserify": "^1.0.0",
     "os-browserify": "^0.3.0",
@@ -60,6 +62,7 @@
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "url": "^0.11.4"
+    "url": "^0.11.4",
+    "vm-browserify": "^1.1.2"
   }
 }
