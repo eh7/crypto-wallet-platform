@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import NavMain from './components/Nav/Main';
+import NavMain from './components/Nav/Main.poll';
 
 import Home from './pages/Home';
 import Data from './pages/Data';

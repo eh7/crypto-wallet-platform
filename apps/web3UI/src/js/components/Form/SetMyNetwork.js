@@ -31,6 +31,15 @@ function SetMyNetwork(props) {
   );
 
   const [
+    network,
+    setNetwork,
+  ] = useState(
+    JSON.parse(
+      localStorage.getItem('network')
+    )
+  );
+
+  const [
     validationMessage,
     setValidationMessage
   ] = useState(false);
@@ -39,11 +48,6 @@ function SetMyNetwork(props) {
     validationErrors,
     setValidationErrors
   ] = useState([]);
-
-  const [
-    network,
-    setNetwork,
-  ] = useState({});
 
   useEffect(() => {
     //console.log('sssssssssssssss useEffect ssssssssssss ::', exportData);
@@ -94,7 +98,7 @@ function SetMyNetwork(props) {
                     >
                       <option value="">Select Network</option>
                       {networks.map((_network, _index) => {
-                        return (<option key={_index} value={_index}>{_network.name}</option>)
+                        return (<option key={_index} value={_index} >{_network.name}</option>)
                       })}
                     </Form.Control>
                   </Form.Group>
