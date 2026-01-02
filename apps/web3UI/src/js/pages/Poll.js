@@ -53,7 +53,7 @@ const myEmitter = new EventEmitter();
 //  return str.charAt(0).toUpperCase()+str.slice(1);
 //}
 
-const AllABI = (props) => {
+const Poll = (props) => {
 
   const [abiData, setAbiData] = useState({});
  
@@ -69,6 +69,45 @@ const AllABI = (props) => {
   const [formFeedback, setFormFeedback] = useState('');
 
   const variantEventButton = [];
+
+  async function prepareVote(_web3All) {
+    alert(JSON.stringify(_web3All))
+    try {
+      const eventTypes = web3All.GetEventsAbi(web3All)
+      //alert(eventTypes.length)
+      alert(eventTypes[0].name)
+      alert(eventTypes[1].name)
+      const index = 0
+      const events = await _web3All.Logs(web3All, eventTypes[index]);
+      events.map((row, rowIndex) => events[rowIndex].event = eventTypes[index].name)
+console.log('WIP ********* EEEEVVVEEEEENNNNNT:', eventTypes[index])
+console.log('logs:', events);
+      const output = await formatEventsData(abiData.abi, eventTypes[index], events)
+console.log('logs output:', output);
+//      const out = events.args.map((item) => {
+//	      alert(item)
+//      })
+      const eventData = events.map((input) =>  {
+//        console.log('eventData :: eventData ::', Object.keys(input.args))
+//        console.log('eventData :: eventData ::', typeof input.args)
+        console.log('eventData :: eventData ::', input.args[0])
+        console.log('eventData :: eventData ::', input.args[1])
+        console.log('eventData :: eventData ::', input.args[2])
+        console.log('eventData :: eventData ::', input.args[3])
+//	//return Object.keys(logs[0].args).map((arg, index) => {
+//        return input.args.map((arg, index) => {
+//          console.log('eventData :: eventData ::', arg, index)
+//          return input.args[0]
+//	})
+        //return input.args[0]
+//      alert(JSON.stringify(input))
+      })
+      console.log('eventData :: eventData ::', eventData)
+    } catch (e) {
+      alert('web3All.Log err' + e);
+    }
+    alert("prepareVote :: events")
+  }
 
   async function handleEventLogs(e, index) {
     if (showLogs && index === showIndex) {
@@ -299,6 +338,7 @@ console.log('ggggggggggggggggggggggggggggggg', formData.values);
       setAbiData(web3All);
       const web3AllEventsData = web3All.GetEventsAbi(web3All)
       setEventTypes(web3AllEventsData);
+      prepareVote(web3All)
     }
     setup();
     myEmitter.on('eventShowForm', (e) => {
@@ -538,6 +578,7 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                           type='button'
                           variant={variantEventButton[index]}
                         >
+			  {/***WIP***/}
                           Logs {eventTypes[index].name}
                           {
                             eventLoading === index 
@@ -691,4 +732,4 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
   }
 }
 
-export default AllABI;
+export default Poll;

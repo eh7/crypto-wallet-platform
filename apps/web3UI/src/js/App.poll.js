@@ -35,6 +35,7 @@ import SetupSSSGenerator from './pages/SetupSSSGenerator';
 
 //import Network from '/components/Conf/Network'; 
 
+import Poll from './pages/Poll';
 import AllABI from './pages/AllABI';
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -122,6 +123,8 @@ const App = () => {
           <Route path="/data" element={<Data />} />
           <Route path="/about" element={<About />} />
           <Route path="/applications" element={<Applications />} />
+
+	  <Route path="/poll" element={<Poll contractName="PollSepolia" />} />
 
           <Route path="/contract/ballot" element={<AllABI contractName="Ballot" />} />
           <Route path="/contract/ballotDev" element={<AllABI contractName="BallotDev" />} />
