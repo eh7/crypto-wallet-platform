@@ -66,22 +66,29 @@ const Poll = (props) => {
   const [eventLoading, setEventLoading] = useState(null);
   const [eventOutput, setEventOutput] = useState(null);
 
+  const [showQuestions, setShowQuestions] = useState(false);
+  const [questions, setQuestions] = useState([]);
+
   const [formFeedback, setFormFeedback] = useState('');
 
   const variantEventButton = [];
 
-  async function prepareVote(_web3All) {
-    alert(JSON.stringify(_web3All))
+  //async function prepareVote(_web3All) {
+  async function handleEventQuestions(e, index) {
+    //alert(JSON.stringify(_web3All))
     try {
       const eventTypes = web3All.GetEventsAbi(web3All)
       //alert(eventTypes.length)
       alert(eventTypes[0].name)
       alert(eventTypes[1].name)
       const index = 0
-      const events = await _web3All.Logs(web3All, eventTypes[index]);
+      //const events = await _web3All.Logs(web3All, eventTypes[index]);
+      const events = await web3All.Logs(web3All, eventTypes[index]);
+
       events.map((row, rowIndex) => events[rowIndex].event = eventTypes[index].name)
 console.log('WIP ********* EEEEVVVEEEEENNNNNT:', eventTypes[index])
 console.log('logs:', events);
+
       const output = await formatEventsData(abiData.abi, eventTypes[index], events)
 console.log('logs output:', output);
 //      const out = events.args.map((item) => {
@@ -103,6 +110,10 @@ console.log('logs output:', output);
 //      alert(JSON.stringify(input))
       })
       console.log('eventData :: eventData ::', eventData)
+      setQuestions(output)
+/*
+*/
+      setShowQuestions(true)
     } catch (e) {
       alert('web3All.Log err' + e);
     }
@@ -338,7 +349,7 @@ console.log('ggggggggggggggggggggggggggggggg', formData.values);
       setAbiData(web3All);
       const web3AllEventsData = web3All.GetEventsAbi(web3All)
       setEventTypes(web3AllEventsData);
-      prepareVote(web3All)
+      //prepareVote(web3All)
     }
     setup();
     myEmitter.on('eventShowForm', (e) => {
@@ -600,6 +611,37 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                     })
                   }
                 </nav>
+              )}
+	      {
+                        <Button
+                          key="ProofsButton"
+                          onClick={(e) => handleEventQuestions(e, 0)}
+                          type='button'
+                          //variant={variantEventButton[index]}
+                          variant="outline-primary"
+                        >
+		          view proofs
+		        </Button>
+	      }
+              {(showQuestions) && (
+  	        <div className="p-4">
+                  <h3>Questions Proofs</h3>
+		  <h4>questions.map: { typeof questions }</h4>
+		  <ul>
+                    <li>--- { Object.keys(questions) }</li>
+		    { console.log(questions) }
+		    { console.log(questions.eventName) }
+		    { console.log(questions.eventInputs) }
+		    { console.log(questions.eventData) }
+		    { questions.eventInputs.map((input, index) => { return (<div key={index}>{ input.name }</div>) }) }
+                    {/* Object.values(questions).map((questionData, index) => { 
+			console.log("--------------", questions[index])
+		        alert(index)
+                      //return (<li key={index}>{ capitalize(input.name) }</li>);
+                      })
+                    */}
+		  </ul>
+		</div>
               )}
               {(showLogs) && (
   	      <div className="p-4">
