@@ -74,6 +74,11 @@ const Poll = (props) => {
   const variantEventButton = [];
 
   //async function prepareVote(_web3All) {
+
+  async function handleEventGenProof(e, index, itemIndex, decoded) {
+    alert('handleEventGenProof :: ' + index + ", " + itemIndex)
+  }
+
   async function handleEventQuestions(e, index) {
     //alert(JSON.stringify(_web3All))
     try {
@@ -628,12 +633,52 @@ console.log('xxxxxxxxxxxxxxxxxxxxxxxxxx', abiData);
                   <h3>Questions Proofs</h3>
 		  <h4>questions.map: { typeof questions }</h4>
 		  <ul>
-                    <li>--- { Object.keys(questions) }</li>
-		    { console.log(questions) }
+		    {/* console.log(questions) }
 		    { console.log(questions.eventName) }
 		    { console.log(questions.eventInputs) }
 		    { console.log(questions.eventData) }
 		    { questions.eventInputs.map((input, index) => { return (<div key={index}>{ input.name }</div>) }) }
+		    { questions.eventData.map((data, index) => { return (<div key={index}>{ data.args[0] }</div>) }) }
+		    { questions.eventData.map((data, index) => { return (<div key={index}>{ data.args[1] }</div>) }) }
+
+		    { alert(questions.eventInputs[0].type) }
+		    { alert(questions.eventInputs[1].type) }
+		    { alert(questions.eventInputs[2].type) }
+		    { alert(questions.eventInputs[3].type) */}
+		  <ul>
+		    { questions.eventInputs.map((input, index) => {
+                        return questions.eventData.map((data, dataIndex) => {
+			  const label = input.name + "  (" + input.type + ") :: "
+                          if (questions.eventInputs[index].type === "uint256") {
+                            return (<li key={index}>{label} {data.args[index].toString()}</li>)
+			  } else if (questions.eventInputs[index].type === "bytes") {
+                            const formatted_item = web3All.toUtf8String(
+                              data.args[index]
+                            )
+                            return (<li key={index}>{label} {formatted_item}</li>)
+			  } else if (questions.eventInputs[index].type === "bytes[]") {
+                            return data.args[index].map((item, itemIndex) => {
+		              if (item !== '0x') {
+                                const decoded = web3All.toUtf8String(
+                                  item
+		                )
+				const button = (<Button
+                                  key={"ProofsButton-" + index + itemIndex}
+                                  onClick={(e) => handleEventGenProof(e, index, itemIndex, decoded)}
+                                  type='button'
+                                  variant="outline-primary"
+				>Generate Vote Proof</Button>)
+                                return (<li key={"decoded-" + itemIndex}>bytes[] -&gt; [{decoded}] {button}</li>);
+			      }
+			    })
+		          } else {
+		            return (<li key={dataIndex}> {input.name} ({input.type}) :: {data.args[index]} </li>)
+			  }
+		        }) 
+		      }) 
+		    }
+		  </ul>
+
                     {/* Object.values(questions).map((questionData, index) => { 
 			console.log("--------------", questions[index])
 		        alert(index)
