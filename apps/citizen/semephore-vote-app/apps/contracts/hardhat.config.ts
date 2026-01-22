@@ -13,6 +13,7 @@ import { resolve } from "path"
 import "./tasks/deployPoll"
 //import "./tasks/deployFeedback"
 //import "./tasks/deployCounterTest"
+//import "./tasks/deployPredictionMarket"
 
 dotenvConfig({ path: resolve(__dirname, "../../.env") })
 

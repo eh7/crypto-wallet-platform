@@ -18,6 +18,9 @@
   "license": "ISC",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@semaphore-protocol/proof": "^4.14.0",
+    "@semaphore-protocol/utils": "^4.14.0",
+    "@zk-kit/utils": "^1.4.1",
     "baseline-browser-mapping": "^2.9.5",
     "bip39-light": "^1.0.7",
     "body-parser": "^1.20.3",

@@ -34,6 +34,10 @@ import {
   capitalize,
 } from "../utils";
 
+//import { Group, Identity, generateProof } from "@semaphore-protocol/proof"
+
+
+
 //import BlockTimestamp from "../components/BlockTimestamp";
 
 const contractName = 'Properties';
@@ -76,6 +80,9 @@ const Poll = (props) => {
   //async function prepareVote(_web3All) {
 
   async function handleEventGenProof(e, index, itemIndex, decoded) {
+    //const scope = group.root
+    //const message = 1
+    //const proof = await generateProof(identity, group, message, scope)
     alert('handleEventGenProof :: ' + index + ", " + itemIndex)
   }
 
