@@ -4,6 +4,7 @@ import { time } from "@nomicfoundation/hardhat-toolbox/network-helpers";
 
 
 import { ethers, BigNumber } from "hardhat";
+//import { ethers } from "hardhat";
 
 import { loadFixture } from "@nomicfoundation/hardhat-toolbox/network-helpers"
 import { Group, Identity, generateProof } from "@semaphore-protocol/core"
@@ -58,6 +59,64 @@ describe("PredictionMarket Semaphore test contract", function () {
 
   describe("# createMarket", () => {
     it("Should allow users to cretae prediction market", async () => {
+      const PredictionMarketFactory = await ethers.getContractFactory("PredictionMarket")
+      const predictionMarketContract = await PredictionMarketFactory.deploy()
+
+      //console.info(`PredictionMarket contract has been deployed to: ${await predictionMarketContract.getAddress()}`)
+
+      const admin = await predictionMarketContract.admin()
+      //console.info(`admin :: ${admin}`)
+
+      const marketCount = await predictionMarketContract.marketCount()
+      //console.info(`marketCount :: ${marketCount}`)
+
+      let deadline = 0
+      //const market = await predictionMarketContract.createMarket(
+      const testMarketCreateRevert = predictionMarketContract.createMarket(
+        "this is the market description",
+	deadline,
+      )
+      await expect(testMarketCreateRevert).to.be.reverted
+
+      const now = new Date();
+      now.setDate(now.getDate() + 1);
+      deadline = now * 1000;
+      //console.log(deadline)
+      const testMarket = await predictionMarketContract.createMarket(
+        "this is the market description",
+        deadline,
+      )
+
+      const eventMarketCreated = (
+	(
+          await getEvent(
+            predictionMarketContract,
+            testMarket,
+            "MarketCreated",
+	  )
+        )
+      )
+      //console.log(eventMarketCreated.args)
+      expect(eventMarketCreated.args[0]).to.equal(0)
+      expect(eventMarketCreated.args[1]).to.equal(
+        "this is the market description",
+      )
+      expect(eventMarketCreated.args[2]).to.equal(deadline)
+
+      expect(await predictionMarketContract.marketCount()).to.equal(1)
+      //console.info(`marketCount :: ${await predictionMarketContract.marketCount()}`)
+      //
+      // enum MarketOutcome { None, Yes, No }
+      //
+      const Yes = BigInt("1")
+      await predictionMarketContract.placeBet(
+        0,
+	Yes,
+	{
+	  value: ethers.parseEther("1.5")
+	}
+      ) 
+
     })
   })
 
