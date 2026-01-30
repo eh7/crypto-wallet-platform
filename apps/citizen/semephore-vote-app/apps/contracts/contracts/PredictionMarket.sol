@@ -23,6 +23,8 @@ contract PredictionMarket {
   event BetPlaced(uint256 marketId, address indexed user, MarketOutcome outcome, uint256 amount);
   event MarketFinalized(uint256 marketId, MarketOutcome outcome);
 
+  event BlockTimestamp(uint256 blockTimestamp, uint256 deadline, bool test);
+
   modifier onlyAdmin() {
     require(msg.sender == admin, 'Only admin can execute');
     _;
@@ -64,6 +66,11 @@ contract PredictionMarket {
   // Finalize the market with the actual outcome
   function finalizeMarket(uint256 _marketId, MarketOutcome _outcome) public onlyAdmin {
     Market storage market = markets[_marketId];
+    emit BlockTimestamp(
+      block.timestamp,
+      market.deadline,
+      block.timestamp >= market.deadline
+    );
     require(block.timestamp >= market.deadline, 'Market cannot be finalized before deadline');
     require(!market.finalized, 'Market already finalized');
 

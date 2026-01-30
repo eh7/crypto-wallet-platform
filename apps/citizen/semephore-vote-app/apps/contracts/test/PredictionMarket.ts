@@ -80,8 +80,11 @@ describe("PredictionMarket Semaphore test contract", function () {
 
       const now = new Date();
       now.setDate(now.getDate() + 1);
+//      now.setDate(now.getDate() - 1);
       deadline = now * 1000;
-      //console.log(deadline)
+      deadline = Math.round(deadline / 1000000)
+
+      console.log('deadline', deadline)
       const testMarket = await predictionMarketContract.createMarket(
         "this is the market description",
         deadline,
@@ -104,18 +107,44 @@ describe("PredictionMarket Semaphore test contract", function () {
       expect(eventMarketCreated.args[2]).to.equal(deadline)
 
       expect(await predictionMarketContract.marketCount()).to.equal(1)
-      //console.info(`marketCount :: ${await predictionMarketContract.marketCount()}`)
+
       //
       // enum MarketOutcome { None, Yes, No }
       //
+      const None = BigInt("0")
       const Yes = BigInt("1")
+      const No = BigInt("2")
       await predictionMarketContract.placeBet(
         0,
 	Yes,
 	{
 	  value: ethers.parseEther("1.5")
 	}
-      ) 
+      )
+
+      // force the block.timestamp to move 100000 base units forward
+      // note: if this is not used you will get a revert error on not
+      await time.increase(100000)
+
+      const finalizedMarket = await predictionMarketContract.finalizeMarket(
+        0,
+	Yes,
+      )
+//      console.log(await predictionMarketContract.finalizeMarket(
+//      console.log(deadline)
+//      console.log(eventMarketCreated.args)
+
+      const eventBlockTimestamp = (
+	(
+          await getEvent(
+            predictionMarketContract,
+            finalizedMarket,
+            "BlockTimestamp",
+	  )
+        )
+      )
+
+      console.log('testing 123 :: ', eventBlockTimestamp)
 
     })
   })
