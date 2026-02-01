@@ -57,6 +57,12 @@ describe("PredictionMarket Semaphore test contract", function () {
     return null;
   }
 
+  async function getBalance (_address) {
+    const balanceInWei = await ethers.provider.getBalance(_address);
+    const balanceInEther = ethers.formatEther(balanceInWei);
+    return `${_address} :: ${balanceInEther} `
+  }
+
   describe("# createMarket", () => {
     it("Should allow users to cretae prediction market", async () => {
       const PredictionMarketFactory = await ethers.getContractFactory("PredictionMarket")
@@ -132,6 +138,14 @@ describe("PredictionMarket Semaphore test contract", function () {
 	  value: ethers.parseEther("1.5")
 	}
       )
+      await predictionMarketContract.connect(accounts[1]).placeBet(
+        0,
+	Yes,
+	{
+          from: accounts[1].address,
+	  value: ethers.parseEther("1.5")
+	}
+      )
 
       // force the block.timestamp to move 100000 base units forward
       // note: if this is not used you will get a revert error on not
@@ -156,6 +170,22 @@ describe("PredictionMarket Semaphore test contract", function () {
       )
 
       console.log('testing 123 :: ', eventBlockTimestamp.args)
+
+      console.log(await getBalance(accounts[0].address))
+      console.log(await getBalance(accounts[1].address))
+
+      await predictionMarketContract.claimWinnings(
+        0,
+      )
+      //await predictionMarketContract.claimWinnings(
+      //  0,
+      //)
+      await predictionMarketContract.connect(accounts[1]).claimWinnings(
+        0,
+      )
+
+      console.log(await getBalance(accounts[0].address))
+      console.log(await getBalance(accounts[1].address))
 
     })
   })
