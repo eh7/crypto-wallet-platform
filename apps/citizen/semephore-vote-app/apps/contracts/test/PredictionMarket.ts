@@ -124,7 +124,7 @@ describe("PredictionMarket Semaphore test contract", function () {
         0,
 	Yes,
 	{
-	  value: ethers.parseEther("1.5")
+	  value: ethers.parseEther("1.0")
 	}
       )
 
@@ -132,12 +132,13 @@ describe("PredictionMarket Semaphore test contract", function () {
       console.log(accounts[1].address)
       await predictionMarketContract.connect(accounts[1]).placeBet(
         0,
-	No,
+	Yes,
 	{
           from: accounts[1].address,
-	  value: ethers.parseEther("1.5")
+	  value: ethers.parseEther("2.0")
 	}
       )
+      /*
       await predictionMarketContract.connect(accounts[1]).placeBet(
         0,
 	Yes,
@@ -146,6 +147,7 @@ describe("PredictionMarket Semaphore test contract", function () {
 	  value: ethers.parseEther("1.5")
 	}
       )
+      */
 
       // force the block.timestamp to move 100000 base units forward
       // note: if this is not used you will get a revert error on not
@@ -174,15 +176,33 @@ describe("PredictionMarket Semaphore test contract", function () {
       console.log(await getBalance(accounts[0].address))
       console.log(await getBalance(accounts[1].address))
 
-      await predictionMarketContract.claimWinnings(
+      const claimCall0 = await predictionMarketContract.claimWinnings(
         0,
       )
-      //await predictionMarketContract.claimWinnings(
-      //  0,
-      //)
-      await predictionMarketContract.connect(accounts[1]).claimWinnings(
+      const claim0 = (
+	(
+          await getEvent(
+            predictionMarketContract,
+            claimCall0,
+            "Payout",
+	  )
+        )
+      )
+      console.log('claimCall0', claim0.args)
+
+      const claimCall1 = await predictionMarketContract.connect(accounts[1]).claimWinnings(
         0,
       )
+      const claim1 = (
+	(
+          await getEvent(
+            predictionMarketContract,
+            claimCall1,
+            "Payout",
+	  )
+        )
+      )
+      console.log('claimCall1', claim1.args)
 
       console.log(await getBalance(accounts[0].address))
       console.log(await getBalance(accounts[1].address))

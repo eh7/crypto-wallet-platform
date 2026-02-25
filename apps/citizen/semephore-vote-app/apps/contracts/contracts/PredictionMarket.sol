@@ -24,6 +24,7 @@ contract PredictionMarket {
   event MarketFinalized(uint256 marketId, MarketOutcome outcome);
 
   event BlockTimestamp(uint256 blockTimestamp, uint256 deadline, bool test);
+  event Payout(address reviever, uint256 payout);
 
   modifier onlyAdmin() {
     require(msg.sender == admin, 'Only admin can execute');
@@ -98,6 +99,7 @@ contract PredictionMarket {
     }
 
     require(payout > 0, 'No winnings to claim');
+    emit Payout(msg.sender, payout);
     payable(msg.sender).transfer(payout);
   }
 }

@@ -25,7 +25,7 @@ var options = {
 //const dataFilePath = 'logs/ETH.json'
 //const dataFilePath = 'logs/ETH.rock.json'
 //const dataFilePath = 'logs/ETH.dev.json'
-const dataFilePath = 'logs/ETH.working.json'
+const dataFilePath = 'logs/ETH.json'
 const data = JSON.parse(fs.readFileSync(dataFilePath))
 const range = 5
 const smaFinal = []
@@ -99,6 +99,28 @@ app.get("/", (req, res) => {
     ema24, 
     chartPriceData,
     labels,
+  })
+})
+
+app.get("/mta", (req, res) => {
+  const now = new Date()
+  //const mta_data = [1,2,3,4,5];//ema(priceData, 24).slice(24, arrayMaxLength)
+  //const mta_labels = [5,4,3,2,1];//ema(priceData, 24).slice(24, arrayMaxLength)
+  const arrayMaxLength = chartPriceData.length 
+  const mta_data = chartPriceData
+  const mta_labels = Array.from({ length: arrayMaxLength - 10 }, (_, index) => index + 1)   
+
+  res.status(200).render('mta_chart', {
+    mta_data,
+    data: data,
+    msg: 'MTA Chart',
+    now,
+    chartPriceData,
+    sma5: [],
+    ema5: [],
+    sma24: [],
+    ema24: [],
+    labels: mta_labels,
   })
 })
 
